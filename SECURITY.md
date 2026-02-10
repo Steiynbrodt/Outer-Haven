@@ -22,7 +22,7 @@ Outer Haven does NOT attempt to:
 
 - Prevent all metadata leakage
 - Hide participation from local device compromise
-- Provide perfect anonymity against a global network adversary
+- Provide perfect anonymity against a global network adversary not because we dont want to but because its physically impossible :(
 - Replace operating system security
 
 ---
@@ -99,6 +99,49 @@ Federation introduces:
 Federation is optional and disabled by default.
 
 ---
+
+### Security boundaries and limitations
+
+Outer Haven is designed to significantly reduce centralized surveillance and mass data collection.
+It does not claim to make users invisible or untouchable.
+
+Specifically:
+
+- The system is not designed to defeat a hypothetical all-seeing global observer.
+  Instead, it removes the single points of control and data aggregation that make mass surveillance easy today.
+
+- Some metadata (such as timing or message size) may still exist, particularly without optional onion-style routing.
+  This metadata is decentralized and fragmented across servers rather than centrally collected.
+
+- If a user’s own device is compromised, local data may be exposed.
+  This is true for all secure communication systems and is outside the scope of server-side protections.
+
+- By default, community servers can read messages in their own public channels,
+  similar to existing community platforms.
+  End-to-end encrypted private channels are planned as an opt-in feature.
+
+- Federation increases interoperability but also increases the number of independent parties involved.
+  No single entity gains a complete view of user activity.
+
+
+## What Outer Haven protects you from / what it doesn’t
+
+### Outer Haven is designed to protect you from:
+- Centralized mass surveillance enabled by global user accounts
+- Mandatory real-world identifiers (email, phone number, government ID)
+- Platform-wide data aggregation and behavioral profiling
+- Data breaches exposing private messages at scale
+- Silent, retroactive inspection of private communications by servers
+- Single-operator control over the entire network
+
+### Outer Haven is not designed to protect you from:
+- Yourself, if you choose to share identifying information
+- Malware or compromise on your own devices
+- Targeted investigation of a specific individual using external means
+- Metadata exposure inherent to any online communication (reduced further with optional onion routing)
+- The need to trust the communities and servers you voluntarily join
+- Correlation attacks performed by a powerful observer monitoring large portions of the network
+- Anonymity loss caused by long-term behavior patterns (e.g. consistent activity schedules, writing style)
 
 ## Cryptography
 
