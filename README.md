@@ -115,7 +115,8 @@ iOS and macOS support possible but not planned (yet)
 In the future, Outer Haven may offer optional prebuilt, self-hostable servers/relays for people who want a simple “plug it in and it works” setup.
 These would remain fully under the user’s control (no mandatory central hosting), and are intended to be affordable and accessible.
 
-
+---
+Terminology used in this document is defined in docs/GLOSSARY.md
 
 ## License
 
