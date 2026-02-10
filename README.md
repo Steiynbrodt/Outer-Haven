@@ -30,9 +30,13 @@ Rather than promising privacy, Outer Haven aims to **enforce it by design**.
 - **Pseudonymous but stable identity** via cryptographic keys
 - **Multi-device support** without central login systems
 - **End-to-end encrypted private communication**
--**End-to-end encrypted private messages(DM)**, delivered via opt-in relay nodes (any server can optionally act as a relay)
+- **End-to-end encrypted private messages(DM)**, delivered via opt-in relay nodes (any server can optionally act as a relay)
 - **Self-hostable servers**, with optional federation
 - **Compliance through technical enforcement**, not data collection
+- **Outer Haven distinguishes between public server channels and private communication.
+All traffic is encrypted in transit. Direct messages are end-to-end encrypted by default.
+End-to-end encrypted server channels are planned as an optional feature for private channels,
+while public channels remain readable by the hosting server for moderation and usability.**
 
 ---
 
