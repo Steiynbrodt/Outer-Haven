@@ -1,7 +1,7 @@
 # Security Model and Threat Assumptions
 
 This document describes the security goals, threat model, and limitations of Outer Haven.
-
+Terminology used in this document is defined in docs/GLOSSARY.md
 ---
 
 ## Security Goals
