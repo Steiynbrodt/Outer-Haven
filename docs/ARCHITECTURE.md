@@ -1,7 +1,7 @@
 # Architecture Overview
 
 This document describes the high-level architecture of Outer Haven.
-
+Terminology used in this document is defined in docs/GLOSSARY.md
 ---
 
 ## Identity Model
