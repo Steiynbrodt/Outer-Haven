@@ -60,12 +60,39 @@ Outer Haven is currently in a research and design phase. This repository intenti
 
 The author is currently learning TypeScript (previous work has been primarily in C/C++ and Python) and is validating a few design assumptions (identity, relays, federation, and encryption boundaries) before writing production code.
 
-## Documentation
+## Platform support
 
-- `docs/ARCHITECTURE.md` – system design and components
-- `SECURITY.md` – threat model and security assumptions
+Outer Haven targets cross-platform support. Early development will focus on a web client (and later Android/Windows/Linux).
+iOS and macOS support is planned, but could possibly arrive later but due to limited access to Apple hardware and tooling during early development not yet planned.
+
+## Docs
+- Architecture: `docs/ARCHITECTURE.md`
+- Threat model: `SECURITY.md`
 
 ---
+## Optional turnkey deployments (future idea not planned yet just idea stage no concept just an idea)
+
+In the future, Outer Haven may offer optional prebuilt, self-hostable servers/relays for people who want a simple “plug it in and it works” setup.
+These would remain fully under the user’s control (no mandatory central hosting), and are intended to be affordable and accessible.
+
+## What Outer Haven protects you from / what it doesn’t
+
+### Outer Haven is designed to protect you from:
+- Centralized mass surveillance enabled by global user accounts
+- Mandatory real-world identifiers (email, phone number, government ID)
+- Platform-wide data aggregation and behavioral profiling
+- Data breaches exposing private messages at scale
+- Silent, retroactive inspection of private communications by servers
+- Single-operator control over the entire network
+
+### Outer Haven is not designed to protect you from:
+- Yourself, if you choose to share identifying information
+- Malware or compromise on your own devices
+- Targeted investigation of a specific individual using external means
+- Metadata exposure inherent to any online communication (reduced further with optional onion routing)
+- The need to trust the communities and servers you voluntarily join
+- Correlation attacks performed by a powerful observer monitoring large portions of the network
+- Anonymity loss caused by long-term behavior patterns (e.g. consistent activity schedules, writing style)
 
 ## Non-Goals
 
