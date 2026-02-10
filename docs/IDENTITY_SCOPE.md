@@ -25,7 +25,4 @@ It exists to prevent accidental expansion of identity concepts beyond their inte
 - Passwords used to unlock keys on user devices.
 - Real-world identity information unless explicitly disclosed by the user.
 
-## What is deferred
-- Zero-knowledge claims tied to identity (e.g. age verification).
-- Cross-server identity resolution via federation.
-- Network-level anonymity mechanisms such as onion routing.
+
