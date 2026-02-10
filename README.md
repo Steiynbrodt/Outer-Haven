@@ -44,6 +44,7 @@ while public channels remain readable by the hosting server for moderation and u
 
 Outer Haven is in early active development.
 
+
 Planned milestones:
 - **v0.1** – Identity, sessions, device pairing
 - **v0.2** – Servers and text chat
@@ -53,6 +54,11 @@ Planned milestones:
 - **v0.6** – Zero-knowledge claims (e.g. age verification)
 
 ---
+## Why this repository is documentation-first (for now)
+
+Outer Haven is currently in a research and design phase. This repository intentionally starts with documentation to lock down the core architecture and threat model before implementation.
+
+The author is currently learning TypeScript (previous work has been primarily in C/C++ and Python) and is validating a few design assumptions (identity, relays, federation, and encryption boundaries) before writing production code.
 
 ## Documentation
 
