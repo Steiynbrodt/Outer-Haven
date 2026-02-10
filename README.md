@@ -53,6 +53,8 @@ which operate independently of Outer Haven and might have diffrent principles an
 
 
 
+
+
 Planned milestones:
 - **v0.1** – Identity, sessions, device pairing
 - **v0.2** – Servers and text chat
@@ -67,7 +69,9 @@ Planned milestones:
 Outer Haven is currently in a research and design phase. This repository intentionally starts with documentation to lock down the core architecture and threat model before implementation.
 
 The author is currently learning TypeScript (previous work has been primarily in C/C++ and Python) and is validating a few design assumptions (identity, relays, federation, and encryption boundaries) before writing production code. also this is the largest most organized and thought through Project the author has done up to this point
-
+Code will be introduced incrementally once the identity and security model
+are considered stable.
+---
 ## Platform support
 
 Outer Haven targets cross-platform support. Early development will focus on a web client (and later Android/Windows/Linux).
