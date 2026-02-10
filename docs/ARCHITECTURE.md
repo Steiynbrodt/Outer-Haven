@@ -77,6 +77,29 @@ Servers:
 - Global identity = cryptographic key
 
 ---
+## Message Confidentiality Model
+
+Outer Haven separates transport security from end-to-end encryption.
+
+### Transport Encryption
+All client–server and server–server communication is encrypted in transit using TLS.
+This protects against network-level observers but does not hide data from the server itself.
+
+### Direct Messages
+Direct messages are end-to-end encrypted.
+Servers and relay nodes cannot read message contents.
+
+### Server Channels (Default)
+By default, server channels are not end-to-end encrypted.
+Messages are readable by the hosting server to allow moderation, indexing, and usability
+similar to existing community platforms.
+
+### Private Channels (Planned)
+End-to-end encrypted server channels are planned as an optional per-channel mode.
+In this mode, only channel members can read message contents, and the server stores
+only encrypted data.
+
+This model allows strong privacy where needed without sacrificing usability by default.
 
 ## Zero-Knowledge Proofs (Planned)
 
