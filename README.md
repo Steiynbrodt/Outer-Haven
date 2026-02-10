@@ -67,4 +67,5 @@ Planned milestones:
 
 ## License
 
-TBD
+MIT
+
