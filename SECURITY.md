@@ -22,7 +22,7 @@ Outer Haven does NOT attempt to:
 
 - Prevent all metadata leakage
 - Hide participation from local device compromise
-- Provide perfect anonymity against a global network adversary not because we dont want to but because its physically impossible :(
+- Provide perfect anonymity against a global network adversary 
 - Replace operating system security
 
 ---
