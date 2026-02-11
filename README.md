@@ -6,7 +6,7 @@ Outer Haven is a community chat platform inspired by the usability of modern too
 
 The goal is not to evade moderation or law, but to build a system where communities can function normally **without requiring centralized user identity, personal data collection, or platform-level control**.
 
-
+---
 
 ---
 
@@ -115,6 +115,17 @@ iOS and macOS support possible but not planned (yet)
 In the future, Outer Haven may offer optional prebuilt, self-hostable servers/relays for people who want a simple “plug it in and it works” setup.
 These would remain fully under the user’s control (no mandatory central hosting), and are intended to be affordable and accessible.
 
+---
+
+## Project Role
+
+Outer Haven is distributed as open-source software.
+
+The project does not operate a centralized communication service, global identity provider, or mandatory relay network.
+
+Communities that deploy and operate servers are responsible for their own governance, moderation, and compliance with applicable laws in their jurisdiction.
+
+The purpose of this project is to provide privacy-preserving, decentralized communication infrastructure not to control how independent communities choose to use it.
 ---
 Terminology used in this document is defined in docs/GLOSSARY.md
 
