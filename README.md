@@ -2,21 +2,29 @@
 
 **A place outside centralized control.**
 
-Outer Haven is a community chat platform inspired by the usability of modern tools like Discord, but built on a fundamentally different foundation: **cryptographic identity instead of accounts, privacy by architecture instead of policy, and decentralization without sacrificing usability**.
+Outer Haven is a community chat platform inspired by the usability of modern tools like Discord, but built on a fundamentally different foundation:
+
+- **Cryptographic identity instead of accounts**
+- **Privacy enforced by architecture instead of policy**
+- **Decentralized deployment without requiring centralized control**
+
+Outer Haven introduces a **two-lane communication model**:
+
+- **Realtime Mode (default)** – low-latency, highly usable communication.
+- **Mix Mode (opt-in)** – higher-latency, text-only communication designed to reduce metadata leakage and raise the cost of traffic analysis.
 
 The goal is not to evade moderation or law, but to build a system where communities can function normally **without requiring centralized user identity, personal data collection, or platform-level control**.
-
----
 
 ---
 
 ## Motivation
 
 Modern communication platforms increasingly require:
-- centralized accounts
-- permanent identifiers (email, phone number, government ID)
-- invasive verification mechanisms
-- trust in operators not to misuse collected data
+
+- Centralized accounts
+- Permanent identifiers (email, phone number, government ID)
+- Invasive verification mechanisms
+- Trust in operators not to misuse collected data
 
 Outer Haven explores a different approach:
 
@@ -31,76 +39,135 @@ Rather than promising privacy, Outer Haven aims to **enforce it by design**.
 - **No global accounts** (no email, phone number, or real-world identity)
 - **Pseudonymous but stable identity** via cryptographic keys
 - **Multi-device support** without central login systems
-- **End-to-end encrypted private messages(DM)**, delivered via opt-in relay nodes (any server can optionally act as a relay)
+- **End-to-end encrypted direct messages (DMs)** delivered via opt-in relay nodes
 - **Self-hostable servers**, with optional federation
 - **Compliance through technical enforcement**, not data collection
-- **Outer Haven distinguishes between public server channels and private communication.
-All traffic is encrypted in transit. Direct messages are end-to-end encrypted by default.
-End-to-end encrypted server channels are planned as an optional feature for private channels,
-while public channels remain readable by the hosting server for moderation and usability.**
+
+Outer Haven distinguishes between public server channels and private communication:
+
+- All traffic is encrypted in transit.
+- Direct messages are end-to-end encrypted by default.
+- Server channels are readable by the hosting server (for moderation and usability).
+- End-to-end encrypted server channels are planned as an optional feature for private channels.
+
+---
+
+# Two-Lane Communication Model
+
+Outer Haven separates usability-focused communication from anonymity-focused communication.
+
+## Realtime Mode (Default)
+
+Designed for usability and low latency.
+
+Supports:
+- Text chat
+- Direct messages
+- Voice (planned)
+- Federation (planned)
+
+Characteristics:
+- Immediate message propagation
+- Presence indicators (optional)
+- Typing indicators (optional)
+- Read states (optional)
+
+Privacy properties:
+- Transport encryption
+- End-to-end encryption for DMs
+- Not designed to defeat global traffic correlation by a state-level adversary
+
+Realtime Mode prioritizes usability while minimizing centralized identity and data aggregation.
+
+---
+
+## Mix Mode (Opt-in High Anonymity)
+
+Designed to reduce metadata leakage and raise the cost of timing and traffic correlation.
+
+Characteristics:
+- Text-only communication
+- Batched or delayed message delivery
+- Optional padding / cover traffic
+- No presence indicators
+- No typing indicators
+- No read receipts
+- No voice or video
+
+Mix Mode prioritizes anonymity over immediacy.
+
+It aims to raise the cost of large-scale traffic analysis but cannot protect against compromised endpoints or behavioral deanonymization.
 
 ---
 
 ## Project Status
 
 Outer Haven is in early active development.
-Outer Haven’s initial design prioritizes privacy and decentralization.
-Optional onion-style routing is planned for later stages of development to further reduce
-network-level linkability and increase resistance to traffic analysis.
-Until onion routing is implemented, users who require stronger network-level anonymity
-should rely on external network-layer tools (such as Tor or a trusted VPN),
-which operate independently of Outer Haven and might have diffrent principles and values.
 
-
-
-
+The project is documentation-first while identity, relay behavior, federation boundaries, and encryption models are refined.
 
 Planned milestones:
-- **v0.1** – Identity, sessions, device pairing
-- **v0.2** – Servers and text chat
-- **v0.3** – Direct messages (1-hop relay)
-- **v0.4** – Voice
-- **v0.5** – Federation
-- **v0.6** – Zero-knowledge claims (e.g. age verification)
 
----
-## Why this repository is documentation-first (for now)
+- **v0.1** – Identity, sessions, device pairing  
+- **v0.2** – Servers and text chat (Realtime Mode)  
+- **v0.3** – Direct messages (relay-based delivery)  
+- **v0.4** – Voice (Realtime Mode only)  
+- **v0.5** – Federation  
+- **v0.6** – Zero-knowledge claims (e.g. age verification)  
+- **v0.7** – Mix Mode transport layer  
 
-Outer Haven is currently in a research and design phase. This repository intentionally starts with documentation to lock down the core architecture and threat model before implementation.
-
-The author is currently learning TypeScript (previous work has been primarily in C/C++ and Python) and is validating a few design assumptions (identity, relays, federation, and encryption boundaries) before writing production code. also this is the largest most organized and thought through Project the author has done up to this point
-Code will be introduced incrementally once the identity and security model
-are considered stable.
----
-## Platform support
-
-Outer Haven targets cross-platform support. Early development will focus on a web client (and later Android/Windows/Linux).
-iOS and macOS support possible but not planned (yet) 
-
-## Docs
-- Architecture: `docs/ARCHITECTURE.md`
-- Threat model: `SECURITY.md`
+Until Mix Mode is implemented, users requiring stronger network-layer anonymity should rely on external tools such as Tor or other privacy-preserving transport systems.
 
 ---
 
-## What Outer Haven protects you from / what it doesn’t
+## Threat Model Overview
 
-### Outer Haven is designed to protect you from:
+Outer Haven considers multiple adversaries:
+
+- Platform operators
+- Data-aggregating service providers
+- Local network observers
+- State-level traffic observers
+
+Realtime Mode prioritizes usability and decentralization.
+
+Mix Mode prioritizes stronger resistance to metadata and traffic correlation at the cost of latency and features.
+
+Outer Haven does not claim to defeat a fully global active adversary with endpoint compromise capability.
+
+---
+
+## What Outer Haven Protects You From
+
+Outer Haven is designed to reduce:
+
 - Centralized mass surveillance enabled by global user accounts
 - Mandatory real-world identifiers (email, phone number, government ID)
 - Platform-wide data aggregation and behavioral profiling
 - Data breaches exposing private messages at scale
-- Silent, retroactive inspection of private communications by servers
+- Silent retroactive inspection of encrypted direct messages
 - Single-operator control over the entire network
 
-### Outer Haven is not designed to protect you from:
-- Yourself, if you choose to share identifying information
+Mix Mode additionally aims to reduce:
+
+- Timing correlation risk
+- Observable message pattern leakage
+- Direct linkability between sender and recipient at the transport level
+
+---
+
+## What Outer Haven Does Not Protect You From
+
+Outer Haven is not designed to protect you from:
+
 - Malware or compromise on your own devices
-- Targeted investigation of a specific individual using external means
-- Metadata exposure inherent to any online communication (reduced further with optional onion routing)
-- The need to trust the communities and servers you voluntarily join
-- Correlation attacks performed by a powerful observer monitoring large portions of the network
-- Anonymity loss caused by long-term behavior patterns (e.g. consistent activity schedules, writing style)
+- Self-disclosure of identifying information
+- Targeted investigation using external intelligence sources
+- Behavioral deanonymization (e.g., writing style, activity timing)
+- Correlation by a fully global adversary observing the entire network in Realtime Mode
+- The need to trust communities and servers you voluntarily join
+
+---
 
 ## Non-Goals
 
@@ -108,12 +175,47 @@ iOS and macOS support possible but not planned (yet)
 - No real-name policies
 - No global moderation authority
 - No mandatory central services
+- No claim of absolute anonymity
 
 ---
-## Optional turnkey deployments (future idea not planned yet just idea stage no concept just an idea and depends on how big this gets)
 
-In the future, Outer Haven may offer optional prebuilt, self-hostable servers/relays for people who want a simple “plug it in and it works” setup.
-These would remain fully under the user’s control (no mandatory central hosting), and are intended to be affordable and accessible.
+## Documentation-First Approach
+
+Outer Haven is currently in a research and design phase.
+
+This repository intentionally starts with documentation to lock down:
+
+- Identity model
+- Relay boundaries
+- Federation assumptions
+- Encryption layers
+- Threat model
+
+Code will be introduced incrementally once the identity and security model are considered stable.
+
+---
+
+## Platform Support
+
+Outer Haven targets cross-platform support.
+
+Initial focus:
+- Web client
+
+Planned:
+- Android
+- Windows
+- Linux
+
+iOS and macOS support possible but not planned yet.
+
+---
+
+## Docs
+
+- Architecture: `docs/ARCHITECTURE.md`
+- Threat model: `SECURITY.md`
+- Terminology: `docs/GLOSSARY.md`
 
 ---
 
@@ -121,15 +223,18 @@ These would remain fully under the user’s control (no mandatory central hostin
 
 Outer Haven is distributed as open-source software.
 
-The project does not operate a centralized communication service, global identity provider, or mandatory relay network.
+The project does not operate:
 
-Communities that deploy and operate servers are responsible for their own governance, moderation, and compliance with applicable laws in their jurisdiction.
+- A centralized communication service
+- A global identity provider
+- A mandatory relay network
 
-The purpose of this project is to provide privacy-preserving, decentralized communication infrastructure not to control how independent communities choose to use it.
+Communities operating servers are responsible for their own governance, moderation, and legal compliance within their jurisdiction.
+
+The purpose of this project is to provide privacy-preserving, decentralized communication infrastructure — not to control how independent communities choose to use it.
+
 ---
-Terminology used in this document is defined in docs/GLOSSARY.md
 
 ## License
 
 MIT
-
