@@ -218,7 +218,7 @@ iOS and macOS support possible but not planned yet.
 - Terminology: `docs/GLOSSARY.md`
 
 ---
-##Key Architecture
+## Key Architecture
 
 Outer Haven separates long-term identity from message encryption.
 
