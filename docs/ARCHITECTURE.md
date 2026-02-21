@@ -1,6 +1,6 @@
 # Architecture Overview
 
-This document describes the high-level architecture of Outer Haven.
+This document describes the high-level architecture of Outer Haven.  
 Terminology used in this document is defined in `docs/GLOSSARY.md`.
 
 ---
@@ -11,12 +11,14 @@ Terminology used in this document is defined in `docs/GLOSSARY.md`.
 - Each user has a **root key pair** (pseudonymous identity)
 - No global usernames, emails, or phone numbers
 - Identity is proven by cryptographic signatures, not credentials
+- Root keys represent stable user continuity across servers
 
 ### Devices
 - Each device has its own **device key**
 - Devices are authorized via **delegation from the root key**
 - Delegation is typically done via **QR-based pairing**
 - Devices can be revoked independently
+- Device keys act on behalf of the root identity but do not replace it
 
 ### Usernames
 - Usernames are **local to a server**
@@ -27,9 +29,10 @@ Terminology used in this document is defined in `docs/GLOSSARY.md`.
 
 ## Authentication
 
-- Challenge–response signatures
+- Challenge–response signatures using device or root keys
 - No passwords sent over the network
 - No server-side password storage
+- Servers authenticate continuity of a cryptographic identity, not accounts
 
 ### Local Protection
 Passwords and biometrics are used **only locally**:
@@ -37,6 +40,30 @@ Passwords and biometrics are used **only locally**:
 - To lock/unlock the application on a device
 
 Passwords never identify a user and never leave the device.
+
+---
+
+## Key Architecture
+
+Outer Haven separates long-term identity from message encryption.
+
+- **Root keys**: persistent identity and delegation authority  
+- **Device keys**: operational authentication keys  
+- **Session keys**: short-lived encryption keys  
+
+Properties:
+
+- Root and device keys **never directly encrypt messages**
+- Session keys are **ephemeral and periodically rotated**
+- Sessions are established via authenticated key agreement
+- Compromise of a session key does not expose past sessions
+
+Security guarantees:
+
+- Forward secrecy for encrypted messages  
+- Post-compromise security after session rotation  
+- Identity portability across servers  
+- No server-managed identity secrets  
 
 ---
 
@@ -91,6 +118,7 @@ Servers:
 - Store only public keys and minimal metadata
 - Enforce rules locally
 - May optionally act as relays (see DM Relays)
+- Do not control or issue user identities
 
 Voice and other realtime features are part of **Realtime Mode only**.
 
@@ -98,9 +126,10 @@ Voice and other realtime features are part of **Realtime Mode only**.
 
 ## Direct Messages (DMs)
 
-- End-to-end encrypted
+- End-to-end encrypted using rotating session keys
 - Servers do not have access to plaintext
 - Transported via **relay nodes**
+- Authenticated by root/device keys, encrypted with session keys
 
 ### Relay Nodes
 - Any server may optionally act as a DM relay
@@ -117,7 +146,7 @@ Voice and other realtime features are part of **Realtime Mode only**.
 - Optional server-to-server communication
 - No central authority
 - Signed events
-- Global identity = cryptographic key
+- Global identity = cryptographic root key
 
 Federation increases interoperability but also expands metadata exposure.
 
@@ -128,20 +157,22 @@ Federation increases interoperability but also expands metadata exposure.
 Outer Haven separates transport security from end-to-end encryption.
 
 ### Transport Encryption
-All client–server and server–server communication is encrypted in transit using TLS.
+All client–server and server–server communication is encrypted in transit using TLS.  
 This protects against network observers but does not hide data from hosting servers.
 
 ### Direct Messages
-Direct messages are end-to-end encrypted.
+Direct messages are end-to-end encrypted with ephemeral session keys.  
 Servers and relay nodes cannot read message contents.
 
 ### Server Channels (Default)
-By default, server channels are not end-to-end encrypted.
+By default, server channels are not end-to-end encrypted.  
 Messages are readable by the hosting server to allow moderation, indexing, and usability.
 
 ### Private Channels (Planned)
-End-to-end encrypted server channels are planned as an optional per-channel mode.
+End-to-end encrypted server channels are planned as an optional per-channel mode.  
 In this mode, only channel members can read message contents, and the server stores only encrypted data.
+
+Session keys for private channels are independent from DM sessions and may be rotated per membership or epoch.
 
 ---
 
@@ -165,3 +196,17 @@ Servers verify proofs without learning personal data.
 - LiveKit: self-hosted voice (Realtime Mode only)
 - libsodium / noble: cryptographic primitives
 - Mix Mode relay and batching engines
+
+---
+
+## Security Model Summary
+
+Outer Haven uses self-authenticating cryptographic identities independent of servers.
+
+- Identity = root key ownership  
+- Authentication = signature proof  
+- Encryption = rotating session keys  
+- Servers store no identity secrets  
+- Identities are portable across communities  
+
+This architecture removes platform-level identity providers while preserving continuity, authentication, and strong end-to-end encryption.
