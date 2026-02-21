@@ -47,7 +47,43 @@ Global active adversary resistance is considered beyond the scope of current Mix
 - Servers never receive passwords
 - Authentication is done via signed challenges
 - Impersonation without key compromise is infeasible
+## Identity Properties and Limits
 
+Outer Haven identities are self-authenticating cryptographic keys.
+
+This guarantees:
+
+- No impersonation without private-key compromise
+- No server-side identity takeover
+- No credential theft attacks
+
+However, key-based identities have inherent limits:
+
+- Anyone can generate new identities (Sybil identities)
+- Identity does not imply reputation or trust
+- Identity binding to a real-world person is out of scope
+
+Communities may apply their own trust, reputation, or admission policies.
+  
+## Key and Session Security
+
+Outer Haven separates persistent identity from message encryption.
+
+- Root and device keys establish identity and authentication
+- Message confidentiality relies on short-lived session keys
+- Identity keys never directly encrypt messages
+
+Session keys are:
+- Ephemeral
+- Rotated periodically
+- Scoped to a communication context (DM or channel)
+
+Security properties:
+
+- Compromise of a session key does not expose past sessions (forward secrecy)
+- New session establishment restores confidentiality after compromise (post-compromise security)
+- Identity keys can remain stable without weakening message secrecy
+  
 ### Local Key Protection
 - Root private keys are encrypted at rest
 - Decryption requires:
@@ -63,6 +99,20 @@ If a device is compromised:
 - The attacker may impersonate the user from that device
 - Other devices remain secure
 - The compromised device can be revoked
+  
+## Key Compromise Scope
+
+Different keys imply different compromise impact:
+
+- Session key compromise → limited to that session window
+- Device key compromise → impersonation from that device
+- Root key compromise → full identity takeover
+
+Outer Haven limits long-term damage via:
+
+- Session key rotation
+- Independent device revocation
+- Root key separation from operational devices
 
 ---
 
@@ -74,6 +124,23 @@ If a server is compromised:
 - User identities cannot be resolved to real-world identity
 - Passwords and private keys are not exposed
 
+
+## Server Trust Boundaries
+
+Servers cannot:
+
+- Generate user identities
+- Forge valid user signatures
+- Decrypt end-to-end encrypted messages
+- Escalate privileges across communities
+
+Servers can:
+
+- Enforce local policy
+- Observe local metadata
+- Control hosted public channels
+
+Outer Haven assumes servers are administratively trusted but cryptographically untrusted.
 ---
 
 ## Relay Nodes
@@ -88,7 +155,8 @@ Relay abuse is mitigated via:
 - Policy restrictions (e.g. members-only)
 - Rate limiting and TTLs
 - Mode-aware behavior (Realtime vs. Mix Mode)
-
+  
+Relays cannot impersonate users or decrypt message contents, even if fully compromised.
 ---
 
 ## Federation Risks
