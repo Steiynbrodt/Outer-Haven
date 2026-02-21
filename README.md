@@ -218,7 +218,17 @@ iOS and macOS support possible but not planned yet.
 - Terminology: `docs/GLOSSARY.md`
 
 ---
+##Key Architecture
 
+Outer Haven separates long-term identity from message encryption.
+
+Each user possesses a persistent identity key that represents their stable pseudonymous identity.
+This key is used only for authentication and establishing secure sessions.
+
+Actual message encryption uses short-lived, rotating session keys that are periodically replaced.
+
+This design provides forward secrecy and limits the impact of any key compromise, while keeping identities portable and independent of servers.
+---
 ## Project Role
 
 Outer Haven is distributed as open-source software.
