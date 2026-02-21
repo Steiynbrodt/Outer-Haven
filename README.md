@@ -244,7 +244,102 @@ Communities operating servers are responsible for their own governance, moderati
 The purpose of this project is to provide privacy-preserving, decentralized communication infrastructure — not to control how independent communities choose to use it.
 
 ---
+## Why not Matrix?
 
+Outer Haven and Matrix share several goals: decentralization, end-to-end encryption, and user autonomy.  
+However, they differ fundamentally in how identity and communities are structured.
+
+### Identity Model
+
+**Matrix**
+- Identity = account on a homeserver (`@user:server`)
+- Homeserver manages identity and devices
+- Accounts are server-bound
+- Migration between servers is complex
+
+**Outer Haven**
+- Identity = cryptographic root key
+- No global accounts or identity providers
+- Identity is independent of any server
+- Users can move freely between communities
+
+ Outer Haven identities are self-authenticating and portable.
+
+---
+
+### Community Ownership
+
+**Matrix**
+- Rooms exist within the federation graph
+- Homeservers retain structural influence
+- Moderation spans multiple servers
+
+**Outer Haven**
+- Communities are self-hosted servers
+- No global namespace dependency
+- Moderation is purely local
+- Communities remain autonomous
+
+ Communities belong to their hosts, not the network.
+
+---
+
+### Identity–Server Relationship
+
+**Matrix**
+- Servers store accounts, devices, and membership graphs
+- Identity continuity depends on server availability
+- Servers act as identity providers
+
+**Outer Haven**
+- Servers store only public keys and minimal metadata
+- Identity continuity is user-held
+- Servers cannot issue or revoke identities
+
+Servers do not control users.
+
+---
+
+### Encryption Model
+
+**Matrix**
+- Device-centric E2EE (Olm/Megolm)
+- Accounts manage key hierarchies
+- Session rotation varies by context
+
+**Outer Haven**
+- Root identity keys + rotating session keys
+- Identity keys never encrypt messages
+- Sessions are ephemeral and regularly rotated
+
+Encryption is identity-independent and server-agnostic.
+
+---
+
+### Network Philosophy
+
+**Matrix**
+- Global federated communication fabric
+- Interoperability across servers by default
+
+**Outer Haven**
+- Community-centric architecture
+- Federation optional and minimal
+- Designed for autonomous groups first
+
+Outer Haven prioritizes community sovereignty over global connectivity.
+
+---
+
+### Summary
+
+Matrix is a federated messaging network with server-managed accounts.  
+Outer Haven is a community-owned communication model with server-independent identities.
+
+They are complementary approaches with different priorities:
+
+- Matrix → global federation and interoperability  
+- Outer Haven → autonomous communities and portable identity
 ## License
 
 MIT
