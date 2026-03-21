@@ -230,29 +230,25 @@ This design provides forward secrecy and limits the impact of any key compromise
 
 
 ```mermaid
-lowchart TD
+flowchart TD
     R["Root Key
-stable identity"]
+persistent identity"]
 
-    subgraph DEVICES["Authorized devices"]
-        D1["Phone"]
-        D2["Laptop"]
-        D3["Tablet"]
-    end
+    D1["Phone Device Key"]
+    D2["Laptop Device Key"]
+    D3["Tablet Device Key"]
 
-    subgraph SESSIONS["Short-lived session keys"]
-        S1["Phone sessions"]
-        S2["Laptop sessions"]
-        S3["Tablet sessions"]
-    end
+    S1["Phone Session Keys"]
+    S2["Laptop Session Keys"]
+    S3["Tablet Session Keys"]
 
     R -->|authorizes| D1
     R -->|authorizes| D2
     R -->|authorizes| D3
 
-    D1 --> S1
-    D2 --> S2
-    D3 --> S3
+    D1 -->|establishes| S1
+    D2 -->|establishes| S2
+    D3 -->|establishes| S3
 ```
 
 ---
