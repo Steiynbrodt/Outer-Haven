@@ -226,8 +226,20 @@ Each user possesses a persistent identity key that represents their stable pseud
 This key is used only for authentication and establishing secure sessions.
 
 Actual message encryption uses short-lived, rotating session keys that are periodically replaced.
-
 This design provides forward secrecy and limits the impact of any key compromise, while keeping identities portable and independent of servers.
+
+```md
+```mermaid
+flowchart TD
+    R[Root Key<br/>stable identity]
+    D[Device Keys<br/>trusted devices]
+    S[Session Keys<br/>message encryption]
+
+    R -->|authorizes| D
+    D -->|establish| S
+```mermaid
+```
+
 ---
 ## Project Role
 
