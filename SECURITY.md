@@ -88,8 +88,8 @@ Security properties:
 - Root private keys are encrypted at rest
 - Decryption requires:
   - a local password, and/or
-  - OS-level biometrics or secure enclave
-- Passwords are never transmitted or stored server-side
+  - OS-level biometrics (like fingerprint sensors for example) or secure enclave
+- Authentication data (passwords and biometric information) never leaves the device and is never stored server-side, we value privacy 
 
 ---
 
