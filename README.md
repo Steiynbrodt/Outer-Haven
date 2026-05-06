@@ -169,7 +169,7 @@ Outer Haven is not designed to protect you from:
 
 ---
 
-## Non-Goals
+## Non-Goals (things we will never do or claim)
 
 - No advertising or tracking
 - No real-name policies
